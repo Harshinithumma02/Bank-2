@@ -1,23 +1,42 @@
 package com.Areteans.Bank2.models;
 
-public class Customer {
-    private String firstName;
+import com.Areteans.Bank2.enums.CustomerEnum;
+import lombok.Getter;
+import lombok.Setter;
 
-    public Customer(String firstName) {
-        this.firstName = firstName;
+@Getter
+@Setter
+
+public class Customer extends CustomerType {
+    private String name;
+    private Integer age;
+    private String  address;
+
+    public Customer(String firstName, CustomerEnum savings){
+        super(firstName, CustomerEnum.SAVINGS);
     }
 
-    public Customer() {
-
+    public String getName() {
+        return name;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getAddress() {
+        return address;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 }
