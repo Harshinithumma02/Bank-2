@@ -50,19 +50,20 @@ import org.springframework.stereotype.Service;
             //System.out.println(jt.getQ);
              return account;
         }
-//        public Account putCredit(Account acc, JdbcTemplate jt) {
-//            int count =jt.update("insert into account values (?,?,?,?,?)",
-//                    acc.getAcc_id(),
-//                    acc.getAccType(),
-//                    acc.getBalance(),
-//                    acc.getUsername(),
-//                    acc.getPassword());
-//            return count;
-//        }
-        public Account deleteCredit(Account acc, JdbcTemplate jt) {
-            Account account=jt.queryForObject("delete from account where acc_id=?",
+
+        public int putCredit(Account acc, JdbcTemplate jt) {
+            int count =jt.update("insert into account values (?,?,?,?,?)",
+                    acc.getAcc_id(),
+                    acc.getAccType(),
+                    acc.getBalance(),
+                    acc.getUsername(),
+                    acc.getPassword());
+            return count;
+        }
+        public int deleteCredit(Account acc, JdbcTemplate jt) {
+            int count=jt.update("delete from account where acc_id=?",
                                 Account.class, acc.getAcc_id());
-            return account;
+            return count;
         }
     }
 
