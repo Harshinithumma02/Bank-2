@@ -29,16 +29,16 @@ public class CreditController {
         Account op = cs.getCredit(acc_id,jt);
         return op;
     }
-//    @PutMapping(path = "putCredit"consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public Account getCredit(@RequestBody Account account) {
-//        System.out.println("in putMapping of credit controller");
-//        int op = cs.putCredit(account),jt);
-//        return "Put successful";
-    //}
+    @PutMapping(path = "putCredit",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String getCredit(@RequestBody Account account) {
+        System.out.println("in putMapping of credit controller");
+        int op = cs.putCredit(account,jt);
+        return "Put successful";
+    }
     @DeleteMapping(path="deleteCredit")
-    public Account deleteCredit(@RequestBody Account account) {
+    public String deleteCredit(@RequestBody Account account) {
         System.out.println("in delete mapping");
-        Account op = cs.deleteCredit(account,jt);
-        return op;
+        int count = cs.deleteCredit(account,jt);
+        return "Delete successful " +count +" rows deleted";
     }
 }

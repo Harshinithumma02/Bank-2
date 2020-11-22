@@ -5,10 +5,12 @@ import com.Areteans.Bank2.models.Transaction;
 import com.Areteans.Bank2.service.DebitService;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class DebitController {
     private final JdbcTemplate jt;
     private final DebitService ds;
@@ -30,7 +32,7 @@ public class DebitController {
         Account op = ds.getDebit(acc_id,jt);
         return op;
     }
-    @PutMapping(path = "putDebit", consumes = MediaType.APPLICATION_JSON_VALUE)
+
     public Account putDebit(@RequestBody Account acc) {
         System.out.println("in debit reading requestBody");
         Account op = ds.putDebit(acc,jt);
