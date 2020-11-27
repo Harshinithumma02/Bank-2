@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class AccountController {
@@ -82,5 +83,11 @@ public class AccountController {
 
         return as.addAmount(paymentJPA.getTrans_id(),paymentJPA.getAmount());
         //return op;
+    }
+    @PostMapping(path="nj",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Map<String,Object> account(@RequestBody Account account)
+    {
+        System.out.println("Hi I am Sushma");
+        return as.create(account,jt);
     }
 }
