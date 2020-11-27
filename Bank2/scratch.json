@@ -1,0 +1,24 @@
+MODELS
+--Bank (PrincipalAmount,Intrest)
+--Account (Username, Password, credit, Debit)
+--BankBranch
+--Password
+--Transaction
+
+  SERVICE
+--AccountService
+-- CreditService
+--DebitService
+--AccountRowMapper
+
+CONTROLLER
+--AccountController
+--CreditController
+--DebitController
+
+REPOSITORY
+-- AccountService
+--PaymentRepository
+
+JPA
+--PaymentJPA
