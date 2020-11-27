@@ -87,7 +87,6 @@ public class AccountController {
     @PostMapping(path="nj",consumes = MediaType.APPLICATION_JSON_VALUE)
     public Map<String,Object> account(@RequestBody Account account)
     {
-        System.out.println("Hi I am Sushma");
         return as.create(account,jt);
     }
 }
