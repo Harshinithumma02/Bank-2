@@ -72,19 +72,18 @@ public String deleteID(int trans_id )
         return paymentJPA2;
     }
     public Map<String,Object> create (Account acc,JdbcTemplate jt){
-        System.out.println("Hi I am Sushma");
         Map<String,Object> map= jt.queryForMap("insert into account values (?,?,?,?,?) returning account",
                 acc.getAcc_id(),
                 acc.getAccType(),
                 acc.getBalance(),
                 acc.getUsername(),
                 acc.getPassword());;
-        System.out.println("Hi I am Sushma");
+
 
 int count1=jt.update("insert into branch(id,address)values (?,?)",
         acc.getBb().getId(),
         acc.getBb().getAddress());
-        System.out.println("Hi I am Sushma");
+
 
 return map;
     }
