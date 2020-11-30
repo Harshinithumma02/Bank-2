@@ -4,11 +4,17 @@ import com.Areteans.Bank2.models.Account;
 import com.Areteans.Bank2.models.Password;
 import com.Areteans.Bank2.models.PaymentJPA;
 import com.Areteans.Bank2.service.AccountRowMapper;
+import com.Areteans.Bank2.util.Thread1;
+import com.Areteans.Bank2.util.Thread2;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 public class AccountService {
@@ -88,5 +94,38 @@ int count1=jt.update("insert into branch(id,address)values (?,?)",
 return map;
     }
 
+   public PaymentJPA multi(PaymentJPA paymentJPA) {
+        RestTemplate restTemplate = new RestTemplate();
+         //Map<String, String> map = new ConcurrentHashMap<>();
+        String url="multithreading/http";
+        Thread thread1 = new Thread(new Runnable() {
+        @Override
+        public void run() {
+
+            for (int a=0;a<10;a++){
+                System.out.println("a value is"+a);
+
+            }
+        }
+    });
+        thread1.start();
+        System.out.println("after thread1 start");
+
+    Thread1 example = new Thread1();
+    Thread t2 = new Thread(example);
+        t2.start();
+
+    Thread2 thread3 = new Thread2();
+        thread3.start();
+
+    ExecutorService executorService = Executors.newFixedThreadPool(10);
+        executorService.submit(example);
+
+        System.out.println("Calling the 2nd thread process");
+    ResponseEntity<PaymentJPA> paymentJPAResponseEntity = restTemplate.postForEntity("http://localhost:8080/account", paymentJPA, PaymentJPA.class);
+         return paymentJPAResponseEntity.getBody();
+//        int amount=jt.queryForObject("select (amount) from payment where trans_id='1'",Integer.class);
+//       return map.put("Amount",amount);
+    }
 
 }
