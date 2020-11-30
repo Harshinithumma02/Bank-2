@@ -67,6 +67,7 @@ public class AccountController {
     @PutMapping(path = "save", consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<PaymentJPA> example1(@RequestBody PaymentJPA paymentJPA)
     {
+        //1st endpoint for multiThreading
       return as.save(paymentJPA);
 
     }
@@ -80,7 +81,7 @@ public class AccountController {
     @PutMapping(path = "addAmount", consumes = MediaType.APPLICATION_JSON_VALUE)
     public String addAmount(@RequestBody PaymentJPA paymentJPA)
     {
-
+        //2nd endpoint for multiThreading
         return as.addAmount(paymentJPA.getTrans_id(),paymentJPA.getAmount());
         //return op;
     }
@@ -89,4 +90,10 @@ public class AccountController {
     {
         return as.create(account,jt);
     }
+
+    @PostMapping(path = "multithreading/http", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public PaymentJPA createEmployeeOveRHTTP(@RequestBody PaymentJPA paymentJPA) {
+        return as.multi(paymentJPA);
+    }
+
 }
